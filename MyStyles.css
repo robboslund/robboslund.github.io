@@ -1,0 +1,128 @@
+﻿#aboutMe{
+	font-size:30px;
+	position:absolute;
+	left:450px;
+}
+#aboutMyself{
+	left:400px;
+}
+
+.animation1Square{
+	width:30px;
+	height:30px;
+}
+body{
+	background-image:url(backgroundImage2.jpg);
+	color:#E9D916;
+	margin:0px;
+	font-family:"Times New Roman", Times, serif;
+	
+}
+button{
+	background-color:#993399;
+	border-color:purple;
+	color:#E9D916;
+	width: 114px; 
+	height: 26px;
+	}
+#CourseWork{
+	left:550px;
+}
+
+.divExpand{
+	width:400px;
+	height:100px;
+	padding-left:20px;
+	font-family:Georgia, serif;
+	font-size:15px;
+}
+.expand{
+	width:40px;
+	height:20px;
+	position:absolute;
+	left:10px;
+}
+
+#firstGame{
+	position:absolute;
+	left: 200px;
+}
+#gameDescription{
+	position: absolute;
+	top:540px;
+	left: 150px;
+	width: 280px;
+}
+
+h1{
+	padding-top:20px;
+	padding-left:300px;
+	border-top:5px #E9D916 ridge;
+	border-bottom:5px #E9D916 ridge;
+	background-color:#4A004A;
+	margin:0px;
+	height:60px;
+}
+h3 button{
+	position:absolute;	
+	text-align:center;
+	top:400px;
+	width:125px;
+	height:50px;
+	}
+#homeButton{
+	position:absolute;
+	top:10px;
+	left:10px;
+}
+#ItList{
+	margin-left:30px;
+}
+
+.ItList{
+	margin-bottom:10px;
+}
+
+	
+#major{
+	text-align:center;
+}
+
+#myCanvas{
+	position:absolute;
+	left:100px;
+	top:150px;
+	width:400px;
+	height:400px; 
+	border:1px solid black;
+}
+#Projects{
+	left:700px;
+}
+
+.sidebar{
+	position:absolute;
+	top:86px;
+	bottom:0px;
+	left:1150px;
+	border:3px #E9D916 solid;
+	border-right:none;
+	padding-left:10px;
+	padding-top:5px;
+	margin:0px;
+}
+#thisWebpage{
+	position:absolute;
+	top:200px;
+	width:700px;
+	left:200px;
+	
+}
+
+	
+
+	
+
+
+
+

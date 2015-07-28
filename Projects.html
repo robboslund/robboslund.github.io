@@ -1,0 +1,225 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <title>Projects</title>
+        <link rel="stylesheet" href="MyStyles.css">
+        <meta charset="utf-8">
+       
+    </head>
+    <body>
+    	<button id="homeButton">Home</button>
+        <h1>Projects</h1>
+        <canvas id="myCanvas"></canvas>
+        <h2 id="firstGame">My First Game!</h2>
+        <p id="gameDescription">(Control the square with your arrow keys and avoid touching the lines to wins!)</p>
+
+<script src="Square.js"></script>
+<script src="Blocker.js"></script>     
+<script type="text/javascript">
+    	 
+    	 /* HOMEBUTTON FOR GOING BACK TO MAIN WEBPAGE*/
+    	 var homeButton = document.getElementById("homeButton");
+    	 var homeClick = function() {
+            window.location.href ="MyWebpage.html";
+            }
+    	 homeButton.addEventListener("click",homeClick);
+    
+    
+    //BEGINNING ANIMATION SECTION 
+    	 var myCanvas = document.getElementById("myCanvas");
+    	 myCanvas.height = 400;
+    	 myCanvas.width = 400;
+    	 var c = myCanvas.getContext("2d");
+    	 var mousePosX = 0;
+    	 var mousePosY = 0;
+    	 //HELPS GET CANVAS MOUSE COORDINATES
+    	 var rect = myCanvas.getBoundingClientRect();
+    	 
+    	 //BOOLEAN TO SEE IF GAME SHOULD RESTART
+    	 var restart = false;
+    	 
+    	 //BOOLEAN TO SEE IF GAME IS RUNNING
+    	 var started = false;
+    	 var score = 0;
+    	 var totalBlockers = 40;
+
+    	 
+		
+		
+    	
+    	 
+ 	 		
+
+        drawBackground = function(){
+        c.fillStyle = "#99CCFF";
+ 	   	c.fillRect(0,0,400,400);
+ 	   	}
+ 	   	
+        	
+ 	   	//THIS IS THE DRAW FUNCTION THAT GETS CALLED REPEATEDLY
+ 	   	var animating = function()
+ 	   	 {
+ 	   	 	square.checkValues();
+ 	   	 	drawBackground();
+ 	   	 	
+ 	   	 	
+ 	   		for (var i=0;i < blockers.length;i++)
+ 	   		{
+ 	   	 		blockers[i].draw();
+ 	   	 		blockers[i].y +=1;
+ 	   	 		if (blockers[i].y > 400)
+ 	   	 		{
+ 	   	 		score ++;
+ 	   	 		blockers.splice(i,1);
+ 	   	 		}
+ 	   	 	}
+ 	   	 	
+ 	   	 	//DRAWS SCORE
+ 	   	 	drawScore();
+ 	   	 	//square.fall();
+ 	   	 	square.draw();
+ 	   	 	
+ 	   	 	//COLLISION CHECK TO SEE IF GAME SHOULD END.
+ 	   	 	for (var i=0;i < blockers.length;i++)
+ 	   		{
+ 	   		   	square.collisionCheck(blockers[i]);
+ 	   		 }
+ 	   		 
+ 	   		 if (score  === totalBlockers)
+ 	   		 {
+ 	   		 	gameWin();
+ 	   		 }
+ 	   	 	
+ 	   	}
+ 	   	
+ 	   	//THIS FUNCTION TRIGGERS SQUARE MOVEMENT UPON ARROW CLICKS
+ 	   	document.onkeydown = function(e)
+ 	   	 	{
+ 	   	 		var key = e.which;
+ 	   	 		if (key === 38){
+ 	   	 			square.up();
+ 	   				}
+ 	   			else if (key === 37){
+ 	   				square.left();
+ 	   				}
+ 	   			else if (key === 39){
+ 	   				square.right();
+ 	   				}
+ 	   			else if (key===40){
+ 	   				square.down();
+ 	   				}
+ 	 		}
+ 	 		
+ 	 		//FUNCTION IS USED TO GATHER A RANDOM INT FOR THE BLOCKER SPAWNS
+ 	 	function getRandomInt(min, max) {
+    			return Math.floor(Math.random() * (max - min + 1)) + min;
+			}
+			
+		//OBJECT THAT CREATES MOUSE POSITION ON CANVAS 
+		var getMousePos = function(e) {
+          mousePosX = e.clientX - rect.left;
+          mousePosY = e.clientY - rect.top;
+        }
+        
+        var drawScore = function()
+        {
+        	c.font = "15pt Georgia";
+ 	   	 	c.fillStyle =  "#0000CC";
+ 	   	 	c.fillText("Score: " + score,5,20);
+ 	   	 }
+ 	 	
+ 	 	var drawStartButton = function(){
+ 	 		c.fillStyle = "#000066"
+ 	 		c.fillRect(300,360,90,35);
+ 	 		c.fillStyle = "#FF0000";
+ 	 		c.font = "15pt Georgia";
+ 	 		c.fillText("START",313,382);
+ 	 		};
+ 	 		
+ 	 	var drawRestartButton = function(){
+ 	 		c.fillStyle = "#000066"
+ 	 		c.fillRect(150,210,100,35);
+ 	 		c.fillStyle = "#FF0000";
+ 	 		c.font = "10pt Georgia";
+ 	 		c.fillText("PLAY AGAIN!",160,230);
+ 	 		};
+ 	 	
+ 	 	var bottomBorder = function(){
+ 	 		c.beginPath();
+ 	 		c.moveTo(0,350);
+ 	 		c.lineTo(400,350);
+ 	 		c.stroke();
+ 	 		}
+ 	 	
+ 	 	var initialize = function()
+        {
+         //INITIALIZE SQUARE 
+    	  square = new Square(185,300);
+    	 
+    	 //INITIALIZE BLOCKERS
+          blockers = []; 
+          for (var i=0; i < totalBlockers;i++)
+          {
+ 	   		 blockers.push(new Blocker(getRandomInt(-100,300),(-i * 100 - 50)));
+ 	   	  }
+ 	   	  started = false;
+ 	   	  score = 0;
+         
+         //DRAW BACKGROUND SCENE
+		  drawBackground();
+          drawStartButton();
+          square.draw();
+          
+          }
+          
+          var gameWin = function()
+          {
+          	clearInterval(newTimer);
+            c.font = "50pt seriff";
+			c.fillStyle = "#000000";
+          	c.fillText("You win!!!",125,200,150);
+          	drawRestartButton();
+          	restart = true;
+          }
+         
+         whenClicked = function(e){
+    	 	
+    	 	getMousePos(e);
+    	 	if (mousePosX >=300 && mousePosX <=390 && mousePosY >=360 && mousePosY <= 395 && restart === false &&
+    	 		started === false)
+    	 	{
+    	 		 newTimer = setInterval(animating, 1000/60);
+    	 		 started = true;
+
+    	 	}
+    	 	if (mousePosX >=150 && mousePosX <=250 && mousePosY >=210 && mousePosY <= 245 && restart === true)
+    	 	{
+    	 		 restart = false;
+    	 		 initialize();
+
+    	 	}
+    	 }
+         
+        var main = function(){
+         	initialize();
+        
+    	 
+    	 //ADDS CLICK LISTENER FOR CHANGING SCENES
+    	  myCanvas.addEventListener('click',function(e)
+    	  {
+    	 	whenClicked(e);
+    	 	});
+    	 	
+    	 	
+
+
+          
+         }
+           
+       //STARTS THE PROGRAM    
+       main();        
+ 	   	 
+
+    </script>
+    </body>
+</html>

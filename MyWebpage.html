@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <title>Rob's Webpage</title>
+        <link rel="stylesheet" href="MyStyles.css">
+        <meta charset="utf-8">
+       
+    </head>
+    <body>
+    	
+        <h1><button id="homeButton">Home</button>Robert Oslund</h1>
+
+        <h3><button id="aboutMyself">About Myself</button></h3>
+        <h3><button id="CourseWork">CourseWork</button></h3>
+        <h3><button id="Projects">Projects</button></h3>
+        <h4 id="aboutMe">About This Website:</h4>
+        <p id="thisWebpage">This webpage is my summer 2015 project to improve my skills with HTML/CSS, and also 
+		to learn how to integrate javascript to add more functionality and depth to the webpages.
+		I'm learning through resources such as KhanAcademy and CodeAcademy learning programs to create
+		simple applications that can be built on and worked into something creative and useful. The webpages below
+		will go more in depth on coursework, projects, and more info about myself.</p>
+        
+        
+        <div class="sidebar"><p>
+        School Email: robert.oslund@mnsu.edu<br><br>
+        Personal Email: robboslund@yahoo.com<br><br>
+        Phone Number: 763-954-1536<br>	
+        </p></div>
+    
+    
+    
+    
+    
+    
+    
+                        <!--JAVASCRIPT STARTS HERE-->
+
+    <script type="text/javascript">
+    
+    	 /*BUTTON THAT BRINGS USER TO HOME PAGE*/
+    	 var homeButton = document.getElementById("homeButton");
+    	 var homeClick = function() {
+            window.location.href = "MyWebpage.html";
+            }
+    	 homeButton.addEventListener("click",homeClick);
+    	 
+    	 /*BUTTON THAT BRINGS USER TO ABOUT ME PAGE*/
+    	 var aboutButton = document.getElementById("aboutMyself");
+    	 var aboutClick = function() {
+            window.location.href = "About me.html";
+            }
+    	 aboutButton.addEventListener("click",aboutClick);
+    	 
+    	 /*BUTTON THAT BRINGS USER TO COURSEWORK PAGE*/
+		 var courseButton = document.getElementById("CourseWork");
+    	 var courseClick = function() {
+            window.location.href = "Coursework.html";
+            }
+    	 courseButton.addEventListener("click",courseClick);
+    	 
+    	/*BUTTON THAT BRINGS USER TO PROJECTS PAGE*/
+		 var projectButton = document.getElementById("Projects");
+    	 var projectClick = function() {
+            window.location.href = "Projects.html";
+            }
+    	 projectButton.addEventListener("click",projectClick);
+
+
+
+
+    </script>
+    </body>
+</html>

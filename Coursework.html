@@ -1,0 +1,180 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <title>Coursework</title>
+        <link rel="stylesheet" href="MyStyles.css">
+        <meta charset="utf-8">
+       
+    </head>
+    <body>
+    	<button id="homeButton">Home</button>
+        <h1>CourseWork</h1>
+        
+        <h2 id="major">Major: Computer Information Technology
+        	<br> Minor: Biology
+        </h2>
+        <p class="sidebar">
+        School Email: robert.oslund@mnsu.edu<br><br>
+        Personal Email: robboslund@yahoo.com<br><br>
+        Phone Number: 763-954-1536<br>	
+        </p>
+
+        
+        <h3>IT Courses</h3>
+        
+        <ul id="ItList">
+        	<li class="ItList">Intro to Information Systems<button id="IIS" class="expand">+</button></li>
+        	<li class="ItList">Intro to Programming &nbsp;&nbsp;&nbsp; <em>Python</em><button id="ITP" class="expand">+</button></li>
+        	<li class="ItList">Fundamentals of Software Development&nbsp;&nbsp;&nbsp;<em>Java</em><button id="FSD" class="expand">+</button></li>
+        	<li class="ItList">Computers In Society<button id="CIS" class="expand">+</button></li>
+        	<li class="ItList">Business Application Programming&nbsp;&nbsp;&nbsp;<em>COBOL</em><button id="BAP" class="expand">+</button></li>
+        	<li class="ItList">Machine Structures and Operating Systems&nbsp;&nbsp;&nbsp;<em>MIPS Assembly</em><button id="MSO" class="expand">+</button></li>
+        	<li class="ItList">Database Systems&nbsp;&nbsp;&nbsp;<em>Oracle DB and MySQL</em><button id="DBS" class="expand">+</button></li>
+        	<li class="ItList">Information Security<button id="IS" class="expand">+</button></li>
+        	<li class="ItList">Systems Analysis and Design<button id="SAD" class="expand">+</button></li>
+        
+        
+        </ul>
+        
+        <h3>Biology Courses</h3>
+        
+        <ul>
+        	<li>General Biology I</li>
+        	<li>General Biology II</li>
+        	<li>Genetics</li>
+        	
+        
+        </ul>
+        
+        <h3>Other Courses of Interest</h3>
+        <ul>
+        	<li>Technical Communications</li>
+        	<li>Business Statistics</li>
+        	<li>Calculus I</li>
+        	<li>Priniples of MicroEconomics</li>
+        	<li>Principles of MacroEconomics</li>
+        	<li> Tae Kwon Do</li>
+        
+        
+        </ul>
+    
+    
+    
+    
+    
+                      
+                    <!--JAVASCRIPT STARTS HERE-->
+ 	<script type="text/javascript">
+    	 
+    	 var homeButton = document.getElementById("homeButton");
+    	 //var IIS = document.getElementById("IIS");
+    	 var ItList = document.getElementById("ItList");	
+ 		 var clicked = false;
+       	 var ITdivArray = [];
+       	 var ITclickedArray = [];
+       	 var ITbiggerThanArray = [];
+       	 var BiodivArray = [];
+       	 var BioclickedArray = [];
+       	 var BiobiggerThanArray = [];
+
+    	 
+    	//MAIN FUNCTION THAT WILL RUN THE JAVASCRIPT COMMANDS
+    	 var main = function()
+    	{
+    	   
+    	   //FIND A WAY TO MAKE IT LOOP ONLY AS LONG AS THE LIST IS
+    	   for (var i=0;i<20;i++){
+    		ITdivArray[i] = document.createElement("div");
+    		ITdivArray[i].className = "divExpand";
+    		}
+    	
+    	  for (var i=0;i<20;i++){
+    		ITclickedArray[i] = false;
+    		}
+    	   
+    	   //EVENT LISTENERS FOR WHEN USERS CLICK BUTTONS
+    	   IIS.addEventListener("click",function(){
+		   expandFunction(1,ItList,"This class taught the basics of Information Systems such as Microsoft Word" +
+    	 		"Access,and Excel, as well as a little bit of an intro into programming.");});
+  
+    	   ITP.addEventListener("click",function(){
+    	   expandFunction(2,ItList,"This course taught all of the fundamental concepts of OOP  programming" +
+    	   " such as loops,if statements, data structures, objects inerheritance, polymorphism. The class was" +
+    	   " taught using python as the programming langauge");});
+    	   FSD.addEventListener("click",function(){
+    	   expandFunction(3,ItList,"In Fundamentals of Software Development we learned to create more complex" +
+    	   " programs using java. The end of the class projects included a maze program and a magic cube program");});
+    	   CIS.addEventListener("click",function(){
+    	   expandFunction(4,ItList,"Computers in Society is a presentation based class. We worked sometimes in groups and" +
+    	   " sometimes individually to create presentation based on pre-selected computer based topics such as" +
+    	   "cryptography,coding, information security, networking, and more.");});
+		   BAP.addEventListener("click",function(){
+    	   expandFunction(5,ItList,"This class is all about COBOL. We learned how to: read a record/write a line," +
+    	   " multi level control breaks, creating a driver program, and performing CRUD operations on files"   );});
+           MSO.addEventListener("click",function(){
+    	   expandFunction(6,ItList,"The topics of this course included computer hardware, learning base 2 and base 16 number" +
+    	   " systems, creating simple programs with MIPS Assembly, and a brief introduction to Linux.");});
+           DBS.addEventListener("click",function(){
+    	   expandFunction(7,ItList,"In Database Management we learnedt the essentials of Entity Relationship Diagrams," +
+    	   " database design, normalization, and SQL. We performed subqueries, inner and outer joins, function, sequences," +
+    	   " trigger, and views" );});
+    	   IS.addEventListener("click",function(){
+    	   expandFunction(8,ItList,"Information Security was a class that covered not only technological securities, but all aspects" +
+    	   " of keeping information secure.  The topics included security technologies, authentication mechanisms, cryptography," +
+    	   "intrustion detection, and also legal issues and ethics"    );});
+           SAD.addEventListener("click",function(){
+    	   expandFunction(9,ItList,"This was a fully group based course where we were grouped into teams to create a mostly theoretical" +
+    	   " information system tailored to fit the needs of the customer. We had the owner or Friesens Bakery in Mankato come in," +
+    	   " to talk with us and describe his systems needs, and then we went about creating a system to fulfill those needs");});
+
+
+
+    	   
+    	 
+    	   homeButton.addEventListener("click",homeClick);
+       	}
+    	
+ 		/*THIS WILL GET BUTTON ID FROM HTML, AND CREATE A SPACE FOR MORE CLASS DETAILS WHEN BUTTON IS CLICKED*/
+        /*FIX EXPAND FUNCTION: expandFunction(buttonID,listPosition,textContent**) */
+ 		var expandFunction = function(listPosition,list,text)
+ 		{
+ 			var biggerThanCount = 0;
+ 			if (ITclickedArray[listPosition] === false)
+    	 	{
+    	 		for (var i=0;i<ITbiggerThanArray.length;i++)
+    	 		{
+    	 			if (ITbiggerThanArray[i] < listPosition)
+    	 			{
+    	 				biggerThanCount++;
+    	 			}
+    	 		}
+    	 		ITbiggerThanArray[listPosition] = listPosition;
+    	 		ITdivArray[listPosition].textContent = text;
+    	 		list.insertBefore(ITdivArray[listPosition],list.childNodes[2*listPosition+1 +biggerThanCount]);
+    	 		
+    	 		ITclickedArray[listPosition] = true;
+    	 	}
+    	 	else
+    	 	{
+    	 		delete ITbiggerThanArray[listPosition];
+    	 		biggerThanCount--;
+    	 		ITdivArray[listPosition].remove();
+    	 		ITclickedArray[listPosition] = false;
+    	 	}
+    	 }
+    	 
+    	 
+    	 //THIS FUNCTION RETURNS TO THE HOME PAGE WHEN CLICKED
+    	 var homeClick = function() {
+            window.location.href ="MyWebpage.html";
+            }
+    	 	    	 	
+    	 	    	 	
+    	 	
+    	 	
+    //RUN THE JAVASCRIPT    
+    main();
+    </script>
+
+    </body>
+</html>
